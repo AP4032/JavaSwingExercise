@@ -73,8 +73,8 @@ public class EvalUtil {
         // strip trailing .0 for integers
         if (result == (long)result) return Long.toString((long)result);
         else return Double.toString(result);
-    } catch (Exception e) {
-        return "Error";
+    }catch (Exception e) {
+        return "ERROR";
     }
     }
 }
