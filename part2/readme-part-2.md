@@ -178,6 +178,7 @@ public class ControlPanel extends JPanel {
         widthField = new JTextField(5);
         heightField = new JTextField(5);
         scaleButton = new JButton("Scale Image");
+    }
 ```
 #### Part 2: Adding Components and ActionListener
 

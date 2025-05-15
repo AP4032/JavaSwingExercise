@@ -27,7 +27,7 @@ public class GameBoard extends JPanel implements ActionListener {
             add(btn);
         }
 
-        timer = new javax.swing.Timer(1000, _ -> {
+        timer = new javax.swing.Timer(1000, e -> {
             first.flip();
             second.flip();
             first = second = null;
