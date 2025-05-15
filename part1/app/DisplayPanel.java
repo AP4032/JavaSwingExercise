@@ -13,6 +13,7 @@ public class DisplayPanel extends JPanel{
         textField.setFont(new Font("Monospaced", Font.BOLD, 28));
         textField.setHorizontalAlignment(JTextField.LEFT);
 
+
         add(textField);
     }
     public void appendText(String s) {

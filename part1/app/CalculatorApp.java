@@ -8,10 +8,11 @@ public class CalculatorApp extends JFrame{
 
     public CalculatorApp(){
         setTitle("Calculator App");
-        setSize(350,500);
+        setSize(350,420);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
 
         DisplayPanel displayPanel = new DisplayPanel();
 
