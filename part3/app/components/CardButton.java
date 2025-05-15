@@ -32,6 +32,7 @@ public class CardButton extends JButton {
 
     }
     public Icon getFrontIcon (){
+
         return img;
     }
 
