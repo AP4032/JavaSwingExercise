@@ -6,14 +6,16 @@ import javax.swing.*;
 public class ScorePanel extends JPanel {
     private final JLabel moveLabel;
 
-    public ScorePanel() {
+    public ScorePanel()
+    {
         setPreferredSize(new Dimension(590, 40));
         moveLabel = new JLabel("Moves: 0", SwingConstants.CENTER);
         moveLabel.setPreferredSize(new Dimension(800, 50));
         add(moveLabel);
     }
 
-    public void updateMoves(int moves) {
+    public void updateMoves(int moves)
+    {
         moveLabel.setText("Moves: " + moves);
     }
 }

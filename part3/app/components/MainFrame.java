@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame{
-    public MainFrame() {
+    public MainFrame()
+    {
         SwingUtilities.invokeLater(() -> {
 
             Image img = new ImageIcon(getClass().getResource("../images/frameIcon.png")).getImage();

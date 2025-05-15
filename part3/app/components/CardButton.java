@@ -21,7 +21,8 @@ public class CardButton extends JButton {
     }
 
     public void flip() {
-        if (!matched) {
+        if (!matched)
+        {
             flipped = !flipped;
             setIcon(flipped ? front : back);
         }

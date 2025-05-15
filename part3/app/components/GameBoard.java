@@ -19,7 +19,8 @@ public class GameBoard extends JPanel implements ActionListener {
         setLayout(new GridLayout(4, 4, 0, 0));
 
         ArrayList<Icon> icons = loadIcons();
-        for (Icon icon : icons) {
+        for (Icon icon : icons)
+        {
             CardButton btn = new CardButton(icon, getBackIcon(), btnWidth,
                     btnHeight);
             btn.addActionListener(this);
