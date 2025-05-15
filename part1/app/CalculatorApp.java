@@ -2,6 +2,7 @@ package part1.app;
 
 import javax.swing.JFrame;
 import java.awt.*;
+import java.util.List;
 
 public class CalculatorApp extends JFrame{
 
@@ -19,8 +20,8 @@ public class CalculatorApp extends JFrame{
                 case "C" -> displayPanel.clearText();
                 case "b" -> displayPanel.backspace();  // If you have a backspace button
                 case "=" -> {
-                    String result = EvalUtil.eval(displayPanel.getText());
-                    displayPanel.setText(result);
+                    List<String> postFix = EvalUtil.eval(displayPanel.getText());
+                    displayPanel.setText(String.valueOf(EvalUtil.calculatePostfix(postFix)));
                 }
                 default -> displayPanel.appendText(value);
             }
