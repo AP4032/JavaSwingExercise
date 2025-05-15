@@ -1,80 +1,79 @@
 package part1.app;
 
 
+import java.util.*;
+
 public class EvalUtil {
-    // Evaluates the expression or returns "Error" on failure
-    public static String eval(String expression) {
-        // Local parser class inside the method
-    class Parser {
-        final String s = expression;
-        int pos = -1, ch;
-
-        void nextChar() {
-            pos++;
-            ch = (pos < s.length() ? s.charAt(pos) : -1);
-        }
-
-        boolean eat(int charToEat) {
-            while (ch == ' ') nextChar();
-            if (ch == charToEat) {
-                nextChar();
-                return true;
-            }
-            return false;
-        }
-
-        double parse() {
-            nextChar();
-            double x = parseExpression();
-            if (pos < s.length()) 
-                throw new RuntimeException("Unexpected: " + (char)ch);
-            return x;
-        }
-
-        double parseExpression() {
-            double x = parseTerm();
-            for (;;) {
-                if      (eat('+')) x += parseTerm();
-                else if (eat('-')) x -= parseTerm();
-                else return x;
-            }
-        }
-
-        double parseTerm() {
-            double x = parseFactor();
-            for (;;) {
-                if      (eat('*')) x *= parseFactor();
-                else if (eat('/')) x /= parseFactor();
-                else return x;
-            }
-        }
-
-        double parseFactor() {
-            if (eat('+')) return parseFactor();  // unary +
-            if (eat('-')) return -parseFactor(); // unary –
-            
-            double x;
-            int start = this.pos;
-            if (eat('(')) {
-                x = parseExpression();
-                if (!eat(')')) throw new RuntimeException("Missing )");
-            } else if ((ch >= '0' && ch <= '9') || ch == '.') {
-                while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
-                x = Double.parseDouble(s.substring(start, this.pos));
-            } else {
-                throw new RuntimeException("Unexpected: " + (char)ch);
-            }
-            return x;
+    private static int precedence(String op) {
+        switch (op) {
+            case "+": case "-":
+                return 1;
+            case "*": case "/":
+                return 2;
+            default:
+                return 0;
         }
     }
 
-    try {
-        double result = new Parser().parse();
-        // strip trailing .0 for integers
-        if (result == (long)result) return Long.toString((long)result);
-        else return Double.toString(result);
-    } catch (Exception e) {
-        return "Error";
+    // Check if token is operator
+    private static boolean isOperator(String token) {
+        return "+-*/".contains(token);
     }
+    public static List<String> eval(String expression) {
+        List<String> output = new ArrayList<>();
+        Stack<String> operators = new Stack<>();
+
+        StringTokenizer tokenizer = new StringTokenizer(expression, "+-*/() ", true);
+        while (tokenizer.hasMoreTokens()) {
+            String token = tokenizer.nextToken().trim();
+            if (token.isEmpty()) continue;
+
+            if (token.matches("\\d+(\\.\\d+)?")) {
+                output.add(token);
+            } else if (isOperator(token)) {
+                while (!operators.isEmpty() && isOperator(operators.peek()) &&
+                        precedence(operators.peek()) >= precedence(token)) {
+                    output.add(operators.pop());
+                }
+                operators.push(token);
+            } else if (token.equals("(")) {
+                operators.push(token);
+            } else if (token.equals(")")) {
+                while (!operators.isEmpty() && !operators.peek().equals("(")) {
+                    output.add(operators.pop());
+                }
+                if (!operators.isEmpty() && operators.peek().equals("(")) {
+                    operators.pop(); // Pop the '('
+                }
+            }
+        }
+        while (!operators.isEmpty()) {
+            output.add(operators.pop());
+        }
+        return output;
+    }
+
+    public static String calculatePostfix(List<String> postfix) {
+        Stack<Double> stack = new Stack<>();
+        try {
+            for (String token: postfix){
+                if (token.matches("\\d+(\\.\\d+)?")) {
+                    stack.push(Double.parseDouble(token));
+                } else if (isOperator(token)) {
+                    double b = stack.pop();
+                    double a = stack.pop();
+                    switch (token) {
+                        case "+": stack.push(a + b); break;
+                        case "-": stack.push(a - b); break;
+                        case "*": stack.push(a * b); break;
+                        case "/": stack.push(a / b); break;
+                    }
+                }
+            }
+            return String.valueOf(stack.pop());
+
+        } catch (EmptyStackException e) {
+            return "Error";
+        }
     }
 }
