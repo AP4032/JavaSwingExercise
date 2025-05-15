@@ -6,28 +6,22 @@ import java.awt.*;
 public class MainFrame extends JFrame{
     public MainFrame() {
         SwingUtilities.invokeLater(() -> {
+            ImageIcon img = new ImageIcon(getClass().getResource("../images/frameIcon.png"));
+            setIconImage(img.getImage());
 
-            Image img = new ImageIcon(getClass().getResource("../images/frameIcon.png")).getImage();
-            setIconImage(img);
-            setTitle("Memory Picture Game");
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setLayout(new GridBagLayout());
-            setSize(600, 650);
+            setTitle("Card Game");
+            setSize(600,600);
+
+            ScorePanel sp = new ScorePanel();
+            GameBoard gb = new GameBoard(sp);
+
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
             setResizable(false);
 
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.gridx = 0;
-            gbc.gridy = 0;
+            add(gb, BorderLayout.CENTER);
+            add(sp, BorderLayout.SOUTH);
 
-            ScorePanel scorePanel = new ScorePanel();
-            GameBoard gameBoard = new GameBoard(scorePanel);
-
-            add(scorePanel, gbc);
-            gbc.gridy = 1;
-            add(gameBoard, gbc);
-            pack();
-
-            setLocationRelativeTo(null);
             setVisible(true);
         });
     }
