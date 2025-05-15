@@ -1,10 +1,7 @@
 package part1.app;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class EvalUtil {
     private static int precedence(String op) {
@@ -56,22 +53,27 @@ public class EvalUtil {
         return output;
     }
 
-    public static double calculatePostfix(List<String> postfix) {
+    public static String calculatePostfix(List<String> postfix) {
         Stack<Double> stack = new Stack<>();
-        for (String token: postfix){
-            if (token.matches("\\d+(\\.\\d+)?")) {
-                stack.push(Double.parseDouble(token));
-            } else if (isOperator(token)) {
-                double b = stack.pop();
-                double a = stack.pop();
-                switch (token) {
-                    case "+": stack.push(a + b); break;
-                    case "-": stack.push(a - b); break;
-                    case "*": stack.push(a * b); break;
-                    case "/": stack.push(a / b); break;
+        try {
+            for (String token: postfix){
+                if (token.matches("\\d+(\\.\\d+)?")) {
+                    stack.push(Double.parseDouble(token));
+                } else if (isOperator(token)) {
+                    double b = stack.pop();
+                    double a = stack.pop();
+                    switch (token) {
+                        case "+": stack.push(a + b); break;
+                        case "-": stack.push(a - b); break;
+                        case "*": stack.push(a * b); break;
+                        case "/": stack.push(a / b); break;
+                    }
                 }
             }
+            return String.valueOf(stack.pop());
+
+        } catch (EmptyStackException e) {
+            return "Error";
         }
-        return stack.pop();
     }
 }

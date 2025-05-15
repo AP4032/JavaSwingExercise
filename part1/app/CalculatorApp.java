@@ -22,7 +22,7 @@ public class CalculatorApp extends JFrame{
                 case "b" -> displayPanel.backspace();  // If you have a backspace button
                 case "=" -> {
                     List<String> postFix = EvalUtil.eval(displayPanel.getText());
-                    displayPanel.setText(String.valueOf(EvalUtil.calculatePostfix(postFix)));
+                    displayPanel.setText(EvalUtil.calculatePostfix(postFix));
                 }
                 default -> displayPanel.appendText(value);
             }
