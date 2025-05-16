@@ -10,5 +10,4 @@ public class Launcher {
            new CalculatorApp(); 
         });
     }
-    
 }
