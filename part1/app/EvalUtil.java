@@ -1,5 +1,11 @@
 package part1.app;
 
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.Font;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 public class EvalUtil {
     // Evaluates the expression or returns "Error" on failure
