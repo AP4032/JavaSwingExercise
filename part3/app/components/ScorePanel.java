@@ -1,5 +1,4 @@
 package part3.app.components;
-
 import java.awt.Dimension;
 import javax.swing.*;
 

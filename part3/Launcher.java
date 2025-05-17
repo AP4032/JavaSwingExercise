@@ -1,5 +1,4 @@
 package part3;
-
 import javax.swing.SwingUtilities;
 
 import part3.app.components.MainFrame;
