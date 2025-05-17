@@ -15,7 +15,9 @@ public class ControlPanel extends JPanel {
         setLayout(new FlowLayout());
         setBackground(new Color(240, 240, 240));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
+        widthField = new JTextField(5);
+        heightField = new JTextField(5);
+        scaleButton = new JButton("Scale Image");
         add(new JLabel("Width:"));
         add(widthField);
         add(new JLabel("Height:"));
