@@ -2,9 +2,9 @@ package part1.app;
 
 
 public class EvalUtil {
-    // Evaluates the expression or returns "Error" on failure
+    
     public static String eval(String expression) {
-        // Local parser class inside the method
+       
     class Parser {
         final String s = expression;
         int pos = -1, ch;
@@ -50,8 +50,8 @@ public class EvalUtil {
         }
 
         double parseFactor() {
-            if (eat('+')) return parseFactor();  // unary +
-            if (eat('-')) return -parseFactor(); // unary –
+            if (eat('+')) return parseFactor();  
+            if (eat('-')) return -parseFactor();
             
             double x;
             int start = this.pos;
@@ -70,7 +70,7 @@ public class EvalUtil {
 
     try {
         double result = new Parser().parse();
-        // strip trailing .0 for integers
+       
         if (result == (long)result) return Long.toString((long)result);
         else return Double.toString(result);
     } catch (Exception e) {
