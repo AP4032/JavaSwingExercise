@@ -1,12 +1,17 @@
 package part1.app;
 
 
+import java.util.SortedMap;
+
 public class EvalUtil {
     // Evaluates the expression or returns "Error" on failure
     public static String eval(String expression) {
+
         // Local parser class inside the method
+        expression = expression.replace("π", "180");
+        String Expression=expression;
     class Parser {
-        final String s = expression;
+        final String s = Expression;
         int pos = -1, ch;
 
         void nextChar() {
