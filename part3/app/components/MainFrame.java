@@ -1,7 +1,14 @@
+// MainFrame.java
 package part3.app.components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.filechooser.*;
+
 
 public class MainFrame extends JFrame{
     public MainFrame() {

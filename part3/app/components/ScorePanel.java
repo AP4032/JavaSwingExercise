@@ -1,3 +1,4 @@
+// ScorePanel.java
 package part3.app.components;
 
 import java.awt.Dimension;
