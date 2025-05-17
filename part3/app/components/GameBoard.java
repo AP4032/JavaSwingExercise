@@ -1,5 +1,4 @@
 package part3.app.components;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
