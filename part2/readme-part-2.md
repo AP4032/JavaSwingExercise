@@ -213,7 +213,7 @@ scaleButton.addActionListener(new ActionListener() {
             JOptionPane.showMessageDialog(null, "Please enter valid numbers for width and height"); // Show error message
         }
     }
-});
+})
 ```
 
 ---
